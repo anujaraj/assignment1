@@ -1,0 +1,54 @@
+<html>
+<head>
+  <title>Find longest substring in a given a string without repeating characters</title>
+</head>
+<body>
+<input type="text" id="s1" name="so1">
+<br/>
+<button onclick="longest_substring()">go</button>
+</body>
+<script>
+function longest_substring() 
+{
+var a = document.getElementById("s1").value
+var chars = a.split('');
+var current;
+var str = "";
+var longest_string = "";
+var arr = {};
+for (var i = 0; i < chars.length; i++)
+ {
+current = chars[i];
+if (!arr[chars[i]]) 
+{ 
+str += current; 
+arr[chars[i]] = {index:i};
+console.log(arr);
+}
+else 
+{
+if(longest_string.length <= str.length)
+{
+longest_string = str;
+}
+var in1 = arr[current].index;
+var in2 = a.substring(in1 + 1, i);
+str = in2 + current;
+console.log(str);
+arr = {};
+for (var j = in1 + 1; j <= i; j++)
+{
+arr[a.charAt(j)] = {index:j};
+}
+}
+}
+if (longest_string.length > str.length)
+{
+console.log(longest_string);
+document.write(longest_string);
+}
+else{
+document.write(str);}
+}
+</script>
+</html>
